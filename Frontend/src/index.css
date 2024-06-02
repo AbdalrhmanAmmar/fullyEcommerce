@@ -2,34 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Active Link Style */
 .active {
-  background: rgb(96 165 250);
+  border-bottom: 2px solid #60a5fa; /* Light blue */
   padding: 5px 10px;
-  color: black;
+  color: white;
   font-weight: 600 !important;
   border-radius: 25px;
   text-align: center;
-  animation: move 1s ease-in-out infinite alternate;
+  background: linear-gradient(
+    90deg,
+    #60a5fa,
+    #3b82f6
+  ); /* Gradient background */
+  animation: glow 1.5s ease-in-out infinite alternate;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Link Hover Effect */
 a:hover {
-  background: rgb(96 165 250);
+  background: #60a5fa; /* Light blue */
   padding: 5px 10px;
-  color: black;
+  color: white;
   font-weight: 600 !important;
   border-radius: 25px;
   text-align: center;
-  animation: move 1s ease-in-out infinite alternate;
+  box-shadow: 0 4px 15px rgba(96, 165, 250, 0.5); /* Glowing shadow */
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-@keyframes move {
+/* Keyframes for Glow Animation */
+@keyframes glow {
   0% {
-    transform: translateX(0);
+    box-shadow: 0 0 10px #60a5fa, 0 0 20px #60a5fa, 0 0 30px #60a5fa;
   }
   50% {
-    transform: translateX(10px);
+    box-shadow: 0 0 20px #3b82f6, 0 0 30px #3b82f6, 0 0 40px #3b82f6;
   }
   100% {
-    transform: translateX(0);
+    box-shadow: 0 0 10px #60a5fa, 0 0 20px #60a5fa, 0 0 30px #60a5fa;
   }
+}
+
+/* Smooth Link Transition */
+a {
+  transition: all 0.3s ease;
 }
