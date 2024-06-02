@@ -1,11 +1,10 @@
-import MainLayout from "./layouts/MainLayout/MainLayout";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes";
 
 function App() {
   return (
     <>
-      <h2 className="text-black">
-        <MainLayout />
-      </h2>
+      <RouterProvider router={router} />
     </>
   );
 }
