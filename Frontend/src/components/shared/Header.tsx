@@ -14,7 +14,8 @@ function Header() {
     <header className="mx-4 flex flex-col space-y-4 ">
       <div className="flex flex-row justify-between w-full items-center  ">
         <h1 className="text-black text-3xl">
-          Our<span className="bg-blue-400 py-1 px-3 rounded-md ml-3">Ecom</span>
+          Our
+          <span className="bg-[#0dcaf0] py-1 px-3 rounded-md ml-3">Ecom</span>
         </h1>
         <span className="text text-3xl">
           <HeadershoppingCart />
