@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TProduct, Tloadings } from "../../types";
-import GetProducts from "./thunk/Getproducts";
+import { TCategory, Tloadings } from "../../types";
+import actGetProducts from "./thunk/Getproducts";
 
 interface IProductsState {
-  records: TProduct[];
+  records: TCategory[];
   loading: Tloadings;
   error: string | null;
 }
@@ -14,20 +14,20 @@ const initialState: IProductsState = {
   error: null,
 };
 
-const productsSclices = createSlice({
-  name: "products",
+const categoriesSlice = createSlice({
+  name: "categories",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(GetProducts.pending, (state) => {
+    builder.addCase(actGetProducts.pending, (state) => {
       state.loading = "pending";
       state.error = null;
     });
-    builder.addCase(GetProducts.fulfilled, (state, action) => {
+    builder.addCase(actGetProducts.fulfilled, (state, action) => {
       state.loading = "idle";
       state.records = action.payload;
     });
-    builder.addCase(GetProducts.rejected, (state, action) => {
+    builder.addCase(actGetProducts.rejected, (state, action) => {
       state.loading = "loading";
       if (action.payload && typeof action.payload === "string") {
         state.error = action.payload;
@@ -36,4 +36,5 @@ const productsSclices = createSlice({
   },
 });
 
-export default productsSclices;
+export { actGetProducts };
+export default categoriesSlice.reducer;
