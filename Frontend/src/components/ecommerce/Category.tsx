@@ -9,7 +9,7 @@ interface Iprops {
 function Category({ title, img, prefix }: Iprops) {
   return (
     <div className="w-[180px] h-[180px]">
-      <Link to={`/Categories/products/${prefix}`}>
+      <Link to={`/category/products/${prefix}`}>
         <div className="overflow-hidden rounded-full bg-[#f2f2f2]">
           <img className="w-full" src={img} alt="" />
         </div>

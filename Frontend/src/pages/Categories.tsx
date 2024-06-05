@@ -2,6 +2,7 @@ import Category from "../components/ecommerce/Category";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store";
 import actGetCategories from "../store/Categories/thunk/GetCategories";
+import Loading from "../components/shared/Loading";
 
 function Categories() {
   const dispatch = useAppDispatch();
@@ -25,9 +26,11 @@ function Categories() {
       : "there are no categories";
 
   return (
-    <div className="flex  ">
-      <div className="grid grid-cols-4 gap-y-6  w-full ">{CategoryList}</div>
-    </div>
+    <Loading loading={loading} error={error}>
+      <div className="flex  ">
+        <div className="grid grid-cols-4 gap-y-6  w-full ">{CategoryList}</div>
+      </div>
+    </Loading>
   );
 }
 

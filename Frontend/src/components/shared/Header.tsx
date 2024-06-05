@@ -3,7 +3,7 @@ import HeadershoppingCart from "../ecommerce/HeadershoppingCart";
 
 const Navigate = [
   { name: "Home", href: "/" },
-  { name: "Categories", href: "/Categories" },
+  { name: "Categories", href: "/category" },
   { name: "About", href: "/About" },
   { name: "Login", href: "/Login" },
   { name: "Register", href: "/Register" },

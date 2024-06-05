@@ -18,9 +18,9 @@ const router = createBrowserRouter(
       <Route path="/" element={<MainLayout />} errorElement={<ErrorPage />}>
         <Route index element={<Home />} />
         <Route path="About" element={<About />} />
-        <Route path="/categories" element={<Categories />} />
+        <Route path="/category" element={<Categories />} />
         <Route
-          path="categories/products/:prefix"
+          path="/category/products/:prefix"
           element={<Products />}
           loader={({ params }) => {
             if (!/^[a-z]+$/i.test(params.prefix as string)) {
