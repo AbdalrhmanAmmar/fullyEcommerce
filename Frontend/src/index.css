@@ -20,7 +20,7 @@
 }
 
 /* Link Hover Effect */
-a:hover {
+.link_hover:hover {
   background: #60a5fa; /* Light blue */
   padding: 5px 10px;
   color: white;
@@ -47,4 +47,28 @@ a:hover {
 /* Smooth Link Transition */
 a {
   transition: all 0.3s ease;
+}
+
+/*Animation*/
+
+.pumping {
+  animation: pumping 300ms ease-out;
+}
+
+@keyframes pumping {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0.8);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.7);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

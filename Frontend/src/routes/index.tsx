@@ -17,10 +17,10 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<MainLayout />} errorElement={<ErrorPage />}>
         <Route index element={<Home />} />
-        <Route path="About" element={<About />} />
-        <Route path="/category" element={<Categories />} />
+        <Route path="about" element={<About />} />
+        <Route path="categories" element={<Categories />} />
         <Route
-          path="/category/products/:prefix"
+          path="categories/products/:prefix"
           element={<Products />}
           loader={({ params }) => {
             if (!/^[a-z]+$/i.test(params.prefix as string)) {
@@ -28,11 +28,12 @@ const router = createBrowserRouter(
                 statusText: "Category not Found",
                 status: 400,
               });
-            } else return true;
+            }
+            return true;
           }}
         />
-        <Route path="Login" element={<Login />} />
-        <Route path="Register" element={<Register />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Route>
     </>
   )

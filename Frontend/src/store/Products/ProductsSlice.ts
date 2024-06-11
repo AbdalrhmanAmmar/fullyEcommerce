@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TCategory, Tloadings } from "../../types";
+import { TProduct, Tloadings } from "../../types";
 import actGetProducts from "./thunk/Getproducts";
 
 interface IProductsState {
-  records: TCategory[];
+  records: TProduct[];
   loading: Tloadings;
   error: string | null;
 }
@@ -18,7 +18,7 @@ const ProductsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    cleanUp: (state) => {
+    productsCleanUp: (state) => {
       state.records = [];
     },
   },
@@ -41,6 +41,7 @@ const ProductsSlice = createSlice({
   },
 });
 
-export const { cleanUp } = ProductsSlice.actions;
+export const { productsCleanUp } = ProductsSlice.actions;
+console.log(productsCleanUp);
 export { actGetProducts };
 export default ProductsSlice.reducer;

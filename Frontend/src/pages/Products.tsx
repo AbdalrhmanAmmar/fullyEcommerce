@@ -2,13 +2,11 @@ import { useEffect } from "react";
 import Product from "../components/ecommerce/Product";
 import { useAppDispatch, useAppSelector } from "../store";
 import actGetProducts from "../store/Products/thunk/Getproducts";
-import { useNavigate, useParams } from "react-router-dom";
-import { cleanUp } from "../store/Products/ProductsSlice";
+import { useParams } from "react-router-dom";
 import Loading from "../components/shared/Loading";
+import { productsCleanUp } from "../store/Products/ProductsSlice";
 
 function Products() {
-  const navigate = useNavigate();
-
   const params = useParams();
   const dispatch = useAppDispatch();
   const { loading, error, records } = useAppSelector((state) => state.products);
@@ -16,7 +14,7 @@ function Products() {
   useEffect(() => {
     dispatch(actGetProducts(params.prefix as string));
     return () => {
-      dispatch(cleanUp());
+      dispatch(productsCleanUp());
     };
   }, [dispatch, params]);
 

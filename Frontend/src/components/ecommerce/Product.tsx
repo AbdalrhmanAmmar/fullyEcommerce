@@ -1,6 +1,27 @@
+import { useEffect, useState } from "react";
+import { useAppDispatch } from "../../store";
+import { addToCart } from "../../store/AddTocart/AddCartSlice";
 import { TProduct } from "../../types";
+import { FaSpinner } from "react-icons/fa";
 
-function Product({ title, price, img }: TProduct) {
+function Product({ id, title, img, price }: TProduct) {
+  const [Added, setAdded] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (Added) {
+      const debouncedAdded = setTimeout(() => {
+        setAdded(false);
+      }, 300);
+      return () => clearTimeout(debouncedAdded);
+    }
+  }, [Added]);
+
+  const dispatch = useAppDispatch();
+
+  const addTocart = () => {
+    setAdded(true);
+    dispatch(addToCart(id));
+  };
   return (
     <div className="w-[120px] flex flex-col justify-between">
       <div className="w-full h-[180px] bg-[#f2f2f2] block ">
@@ -13,8 +34,19 @@ function Product({ title, price, img }: TProduct) {
         {title}
       </h2>
       <h3 className="text-[13px]">{price} Egp</h3>
-      <button className="bg-[rgb(96,165,250)] text-black rounded-md my-2 py-2 px-3">
-        Add To Cart
+      <button
+        disabled={Added}
+        className={`bg-[rgb(96,165,250)] text-black rounded-md my-2 py-2 px-3 $`}
+        onClick={addTocart}
+      >
+        {Added ? (
+          <span className="flex justify-center items-center gap-3">
+            <FaSpinner />
+            Loading
+          </span>
+        ) : (
+          <span>Add To cart</span>
+        )}
       </button>
     </div>
   );

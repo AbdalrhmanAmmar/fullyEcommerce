@@ -5,7 +5,7 @@ import { TProduct } from "../../../types";
 type TResponse = TProduct[];
 
 const actGetProducts = createAsyncThunk(
-  "categories/actGetCategories",
+  "products/actGetproducts",
   async (prefix: string, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {

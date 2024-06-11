@@ -3,10 +3,10 @@ import HeadershoppingCart from "../ecommerce/HeadershoppingCart";
 
 const Navigate = [
   { name: "Home", href: "/" },
-  { name: "Categories", href: "/category" },
-  { name: "About", href: "/About" },
-  { name: "Login", href: "/Login" },
-  { name: "Register", href: "/Register" },
+  { name: "Categories", href: "categories" },
+  { name: "About", href: "about" },
+  { name: "Login", href: "login" },
+  { name: "Register", href: "register" },
 ];
 
 function Header() {
@@ -25,14 +25,18 @@ function Header() {
         <ul className="flex flex-cols space-x-4 mx-4">
           {Navigate.slice(0, 3).map((link) => (
             <li key={link.href}>
-              <NavLink to={link.href}>{link.name}</NavLink>
+              <NavLink className="link_hover" to={link.href}>
+                {link.name}
+              </NavLink>
             </li>
           ))}
         </ul>
         <ul className="flex flex-cols space-x-4 mx-4">
           {Navigate.slice(3).map((link) => (
             <li key={link.href}>
-              <NavLink to={link.href}>{link.name}</NavLink>
+              <NavLink className="link_hover" to={link.href}>
+                {link.name}
+              </NavLink>
             </li>
           ))}
         </ul>
