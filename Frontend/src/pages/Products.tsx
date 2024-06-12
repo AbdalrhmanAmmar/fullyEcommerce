@@ -11,6 +11,13 @@ function Products() {
   const dispatch = useAppDispatch();
   const { loading, error, records } = useAppSelector((state) => state.products);
 
+  const cartItems = useAppSelector((state) => state.cart.items);
+
+  const productsInfo = records.map((record) => ({
+    ...record,
+    quantity: cartItems[record.id] || 0,
+  }));
+
   useEffect(() => {
     dispatch(actGetProducts(params.prefix as string));
     return () => {

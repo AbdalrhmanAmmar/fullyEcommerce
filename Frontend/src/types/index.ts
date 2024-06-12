@@ -14,4 +14,5 @@ export interface TProduct {
   cat_prefix?: string;
   img: string;
   quantity?: number;
+  max: number;
 }
