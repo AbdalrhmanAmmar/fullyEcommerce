@@ -1,12 +1,21 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useAppDispatch } from "../../store";
 import { addToCart } from "../../store/AddTocart/AddCartSlice";
 import { TProduct } from "../../types";
 import { FaSpinner } from "react-icons/fa";
 
-function Product({ id, title, img, price, max }: TProduct) {
+const product = memo(function Product({
+  id,
+  title,
+  img,
+  price,
+  max,
+  quantity,
+}: TProduct) {
   const [Added, setAdded] = useState<boolean>(false);
   const [MaxItem, setMaxItem] = useState(max);
+
+  const currentQuantity = max - (quantity ?? 0);
 
   useEffect(() => {
     if (Added) {
@@ -35,7 +44,7 @@ function Product({ id, title, img, price, max }: TProduct) {
       >
         {title}
       </h2>
-      {max !== MaxItem && (
+      {/* {max !== MaxItem && (
         <h3 className="flex items-center gap-2">
           Max Item:
           <span className="bg-indigo-400 rounded-full w-6 h-6 text-center ">
@@ -43,10 +52,13 @@ function Product({ id, title, img, price, max }: TProduct) {
             {MaxItem}
           </span>
         </h3>
-      )}
+      )} */}
+      {currentQuantity === 0
+        ? "You Reach to the limit"
+        : `you can add ${currentQuantity}`}
 
       <h3 className="text-[13px]">{price} Egp</h3>
-      {MaxItem === 0 ? (
+      {currentQuantity === 0 ? (
         <button
           disabled
           className="bg-[rgb(96,165,250)] text-black rounded-md my-2 py-2 px-3"
@@ -71,6 +83,6 @@ function Product({ id, title, img, price, max }: TProduct) {
       )}
     </div>
   );
-}
+});
 
-export default Product;
+export default product;

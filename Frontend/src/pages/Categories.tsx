@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store";
 import actGetCategories from "../store/Categories/thunk/GetCategories";
 import Loading from "../components/shared/Loading";
+import GridList from "../components/shared/GridList";
 
 function Categories() {
   const dispatch = useAppDispatch();
@@ -16,20 +17,14 @@ function Categories() {
     }
   }, [dispatch, records]);
 
-  const CategoryList =
-    records.length > 0
-      ? records.map((category) => (
-          <div className="flex justify-center mb-5 mt-2" key={category.id}>
-            <Category {...category} />
-          </div>
-        ))
-      : "there are no categories";
-
   return (
     <Loading loading={loading} error={error}>
-      <div className="flex  ">
-        <div className="grid grid-cols-4 gap-y-6  w-full ">{CategoryList}</div>
-      </div>
+      <GridList
+        text="there is no category"
+        records={records}
+        renderItem={(record) => <Category {...record} />}
+      />
+      <div className="flex  "></div>
     </Loading>
   );
 }

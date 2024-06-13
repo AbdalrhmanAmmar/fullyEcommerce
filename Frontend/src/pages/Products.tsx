@@ -5,6 +5,7 @@ import actGetProducts from "../store/Products/thunk/Getproducts";
 import { useParams } from "react-router-dom";
 import Loading from "../components/shared/Loading";
 import { productsCleanUp } from "../store/Products/ProductsSlice";
+import GridList from "../components/shared/GridList";
 
 function Products() {
   const params = useParams();
@@ -25,20 +26,23 @@ function Products() {
     };
   }, [dispatch, params]);
 
-  const ProductList =
-    records.length > 0
-      ? records.map((product) => (
-          <div className="flex justify-center mb-5 mt-2" key={product.id}>
-            <Product {...product} />
-          </div>
-        ))
-      : "there are no products";
+  // const ProductList =
+  //   records.length > 0
+  //     ? records.map((product) => (
+  //         <div className="flex justify-center mb-5 mt-2" key={product.id}>
+  //           <Product {...product} />
+  //         </div>
+  //       ))
+  //     : "there are no products";
 
   return (
     <Loading loading={loading} error={error}>
-      <div className="flex  bg-gray-100">
-        <div className="grid grid-cols-4 gap-y-6  w-full ">{ProductList}</div>
-      </div>
+      <GridList
+        text="there is no item available"
+        records={productsInfo}
+        renderItem={(record) => <Product {...record} />}
+      />
+      <div className="flex  bg-gray-100"></div>
     </Loading>
   );
 }

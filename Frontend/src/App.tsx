@@ -3,6 +3,8 @@ import router from "./routes";
 import { Provider } from "react-redux";
 import { store, presistor } from "./store";
 import { PersistGate } from "redux-persist/integration/react";
+import "./services/Axios.global";
+
 function App() {
   return (
     <>
