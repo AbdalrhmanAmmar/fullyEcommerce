@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import HeadershoppingCart from "../ecommerce/HeadershoppingCart";
 
 const Navigate = [
@@ -17,9 +17,13 @@ function Header() {
           Our
           <span className="bg-[#0dcaf0] py-1 px-3 rounded-md ml-3">Ecom</span>
         </h1>
-        <span className="text text-3xl">
-          <HeadershoppingCart />
-        </span>
+
+        <Link to="/cart">
+          <div className="text text-3xl flex items-center gap-3">
+            <HeadershoppingCart />
+            Shopping Cart
+          </div>
+        </Link>
       </div>
       <nav className="flex  justify-between bg-[#343a40] text-white py-3 rounded-md ">
         <ul className="flex flex-cols space-x-4 mx-4">

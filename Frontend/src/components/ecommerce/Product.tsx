@@ -1,8 +1,8 @@
 import { memo, useEffect, useState } from "react";
-import { useAppDispatch } from "../../store";
-import { addToCart } from "../../store/AddTocart/AddCartSlice";
+import { useAppDispatch, useAppSelector } from "../../store";
 import { TProduct } from "../../types";
 import { FaSpinner } from "react-icons/fa";
+import { addToCart } from "../../store/cart/CartSlice";
 
 const product = memo(function Product({
   id,
@@ -13,9 +13,11 @@ const product = memo(function Product({
   quantity,
 }: TProduct) {
   const [Added, setAdded] = useState<boolean>(false);
+
+  const { items } = useAppSelector((state) => state.Cart);
   const [MaxItem, setMaxItem] = useState(max);
 
-  const currentQuantity = max - (quantity ?? 0);
+  const currentQuantity = MaxItem - (quantity ?? 0);
 
   useEffect(() => {
     if (Added) {
@@ -28,13 +30,14 @@ const product = memo(function Product({
 
   const dispatch = useAppDispatch();
 
-  const addTocart = () => {
-    setMaxItem((prev) => prev - 1);
+  const addTocarthandler = () => {
     setAdded(true);
+    setMaxItem((prev) => prev - 1);
     dispatch(addToCart(id));
+    console.log("first");
   };
   return (
-    <div className="w-[120px] flex flex-col justify-between">
+    <div className="w-[120px] flex flex-col space-y-4">
       <div className="w-full h-[180px] bg-[#f2f2f2] block ">
         <img src={img} alt={title} />
       </div>
@@ -44,7 +47,7 @@ const product = memo(function Product({
       >
         {title}
       </h2>
-      {/* {max !== MaxItem && (
+      {max !== MaxItem && (
         <h3 className="flex items-center gap-2">
           Max Item:
           <span className="bg-indigo-400 rounded-full w-6 h-6 text-center ">
@@ -52,24 +55,28 @@ const product = memo(function Product({
             {MaxItem}
           </span>
         </h3>
-      )} */}
-      {currentQuantity === 0
-        ? "You Reach to the limit"
-        : `you can add ${currentQuantity}`}
+      )}
+      <div className="">
+        {MaxItem === 0 ? (
+          <div className="bg-red-500 rounded-md">You Reach to the limit</div>
+        ) : (
+          `you can add ${currentQuantity}`
+        )}
+      </div>
 
       <h3 className="text-[13px]">{price} Egp</h3>
-      {currentQuantity === 0 ? (
+      {MaxItem === 0 ? (
         <button
           disabled
-          className="bg-[rgb(96,165,250)] text-black rounded-md my-2 py-2 px-3"
+          className="bg-[rgb(96,165,250)] text-black rounded-md my-2 py-2 px-3 opacity-70"
         >
           You cant Add
         </button>
       ) : (
         <button
+          onClick={addTocarthandler}
           disabled={Added}
           className={`bg-[rgb(96,165,250)] text-black rounded-md my-2 py-2 px-3 $`}
-          onClick={addTocart}
         >
           {Added ? (
             <span className="flex justify-center items-center gap-3">

@@ -12,7 +12,7 @@ function Products() {
   const dispatch = useAppDispatch();
   const { loading, error, records } = useAppSelector((state) => state.products);
 
-  const cartItems = useAppSelector((state) => state.cart.items);
+  const cartItems = useAppSelector((state) => state.Cart.items);
 
   const productsInfo = records.map((record) => ({
     ...record,

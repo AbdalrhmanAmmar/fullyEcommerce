@@ -2,8 +2,8 @@ import { RouterProvider } from "react-router-dom";
 import router from "./routes";
 import { Provider } from "react-redux";
 import { store, presistor } from "./store";
-import { PersistGate } from "redux-persist/integration/react";
 import "./services/Axios.global";
+import { PersistGate } from "redux-persist/integration/react";
 
 function App() {
   return (
